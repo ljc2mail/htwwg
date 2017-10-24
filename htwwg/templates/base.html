@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ title }}</title>
+        <!--
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" type="text/css">
+        -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!--
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'css/hfwwg.css' %}">
+        <link rel="stylesheet" href="{% static 'css/styledform.css' %}">
+        -->
+    </head>
+    <body>
+        <!--<nav class="navbar navbar-default">-->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="{% url 'htwwg:sighting_list' %}">Home</a></li>
+                  <li><a href="{% url 'htwwg:index' %}">Add sighting</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <p class="navbar-text">Welcome, {{ user.email }}. Thanks for logging in.</p>
+                        <li><a href={% url 'user:edit' %}><span class="glyphicon glyphicon-user"></span>Change</a></li>
+                        <li><a href={% url 'user:logout' %}><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    {% else %}
+                        <p class="navbar-text">Welcome, Please log in or Signup to log in</p>
+                        <li><a href={% url 'user:signup' %}><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href={% url 'user:login' %}><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {% endif %}
+                </ul> 
+            </div>
+        </nav>
+        <h1>{{ title }}</h1>
+    	{% block content %}
+    	{% endblock content %}
+    </body>
+</html>

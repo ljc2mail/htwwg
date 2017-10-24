@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+                <li>Sighting Date: {{ sight.datetime|capfirst }} </li> 
+                <li>Sighting Author: {{ sight.name|capfirst }} </li> 
+                <li>Fin type: {{ sight.fin_type|capfirst }} </li>
+                <li>Whale type: {{ sight.whale_type|capfirst }}</li>
+	<a href="{% url 'index' %}">Back to New Sighting</a>
+{% endblock %}

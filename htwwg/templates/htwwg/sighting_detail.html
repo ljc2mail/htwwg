@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+                <li>Sighting Date: {{ sight.datetime|capfirst }} </li> 
+                <li>Sighting Location: {{ sight.location|capfirst }} </li> 
+                <li>Sighting Author: {{ sight.name|capfirst }} </li> 
+                <li>Fin type: {{ sight.fin_type|capfirst }} </li>
+                <li>Whale type: {{ sight.whale_type|capfirst }}</li>
+                <li>Blow type: {{ sight.blow_type|capfirst }}</li>
+                <li>Wave type: {{ sight.wave_type|capfirst }}</li>
+     </div>
+                
+{% endblock %}

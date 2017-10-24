@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for sighting in sightings %}
+    <div class="container">
+        <div class="date">
+            <a href="{% url 'htwwg:detail' sighting.pk %}">Sighting {{ sighting.pk }} </a>
+            <li>Sighting Date: {{ sighting.datetime|capfirst }} </li> 
+            <li>Fin type: {{ sighting.fin_type|capfirst }} </li>
+            <li>Whale type: {{ sighting.whale_type|capfirst }}</li>
+
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
