@@ -23,12 +23,12 @@ def signup(request):
 
     return render(request, 'authentication/signup.html', {'form': form})
 
-@login_required
+
 def profile(request):
 	args = {'user': request.user}
 	return render(request, 'authentication/profile.html', args)
 
-@login_required
+
 def edit(request):
     if request.method == 'POST':
         form = EditProfileForm(instance=request.user, data=request.POST)
@@ -43,7 +43,7 @@ def edit(request):
 
     return render(request, 'authentication/edit_profile.html', {'form': form})
 
-@login_required
+
 def passwordchange(request):
     if request.method == 'POST':
         form = PasswordChangeForm(user=request.user, data=request.POST)
