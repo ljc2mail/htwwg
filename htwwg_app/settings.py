@@ -137,7 +137,9 @@ LOGIN_URL = '/user/login'
 
 LOGIN_EXEMPT_URL = (
     'user/signup',
-    'user/logout'
+    'user/logout',
+    'user/password_reset',
+    'user/reset'
     )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # During development only
