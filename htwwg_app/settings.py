@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'authentication.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'htwwg_app.urls'
@@ -131,5 +132,12 @@ AUTH_USER_MODEL = 'authentication.MyUser'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = '/user/login'
+
+LOGIN_EXEMPT_URL = (
+    'user/signup',
+    'user/logout'
+    )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # During development only
