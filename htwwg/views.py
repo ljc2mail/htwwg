@@ -9,13 +9,16 @@ from django.utils import timezone
 # Create your views here.
 def index(request):
     if request.method == "POST":
+        user = request.user
         form = SightingForm(request.POST)
+        
         if form.is_valid():
-        	sighting = form.save(commit=False)
-        	sighting.datetime = timezone.now()
-        	sighting.save()
-        	return redirect('htwwg:detail', pk=sighting.pk)
-        	#return render(request, 'htwwg/thank.html', {'title': 'Thank You'})
+            sighting = form.save(commit=False)
+            sighting.datetime = timezone.now()
+            sighting.email = user.email
+            sighting.save()
+            return redirect('htwwg:detail', pk=sighting.pk)
+
     else:
         form = SightingForm()
 
