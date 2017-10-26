@@ -17,6 +17,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from htwwg import views as htwwg_views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     url(r'^$', htwwg_views.sighting_list),
     url(r'^admin/', admin.site.urls),
@@ -24,4 +27,4 @@ urlpatterns = [
     url(r'^api/sighting/', include('htwwg.api.urls', namespace='api-sighting')),
     url(r'^user/', include('authentication.urls', namespace='user')),
     url(r'^api/user/', include('authentication.api.urls', namespace='api-user')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

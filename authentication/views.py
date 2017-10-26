@@ -5,7 +5,6 @@ from .admin import UserCreationForm
 from .forms import EditProfileForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def signup(request):
@@ -33,9 +32,11 @@ def edit(request):
     if request.method == 'POST':
         form = EditProfileForm(instance=request.user, data=request.POST)
         if form.is_valid():
-            form.save()
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
+            #picture = form.cleaned_data.get('picture.name')
+            #print(picture)
+            form.save()
             user = authenticate(email=email, password=raw_password)
             return redirect('user:profile')
     else:

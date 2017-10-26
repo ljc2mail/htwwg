@@ -59,7 +59,8 @@ ROOT_URLCONF = 'htwwg_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        #'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -141,5 +143,9 @@ LOGIN_EXEMPT_URL = (
     'user/password_reset',
     'user/reset'
     )
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'authentication/media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # During development only

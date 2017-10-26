@@ -3,5 +3,12 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
+	<div class="container">
                 <li>Email: {{ user.email }} </li> 
+                <br>
+                <li>Date_of_birth: {{ user.date_of_birth }} </li>
+                <br>
+                <img src="{{ user.picture.url }}" width="240">
+    </div>
+
 {% endblock %}

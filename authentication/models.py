@@ -31,7 +31,7 @@ class MyUserManager(BaseUserManager):
             email,
             password=password,
             date_of_birth=date_of_birth,
-        )
+       )
         user.is_admin = True
         user.save(using=self._db)
         return user
@@ -47,6 +47,8 @@ class MyUser(AbstractBaseUser):
     date_of_birth = models.DateField()
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+
+    picture = models.ImageField(upload_to='user_picture/%Y/%m/%d', blank=True)
 
     objects = MyUserManager()
 
