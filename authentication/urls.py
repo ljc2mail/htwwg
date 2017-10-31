@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.password_reset_confirm, reset_args, name='password_reset_confirm'),
     url(r'^reset/done/$', views.password_reset_complete,  {'template_name': 'authentication/password_reset_complete.html'}, name='password_reset_complete'),
+    url(r'^connect/(?P<Op>(add|remove))/(?P<pk>\d+)/$', authentication_views.changefriend, name='changefriend')
 ]

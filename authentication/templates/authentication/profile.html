@@ -4,11 +4,37 @@
 
 {% block content %}
 	<div class="container">
+		<div class="col-md-4">
                 <li>Email: {{ user.email }} </li> 
                 <br>
                 <li>Date_of_birth: {{ user.date_of_birth }} </li>
                 <br>
-                <img src="{{ user.picture.url }}" width="240">
+                <img src="{{ user.picture.url }}" width="240">			
+		</div>
+		<div class="col-md-4">
+			<h4>Friend</h4>
+			{% for friend in friends%}
+			<li> {{ friend.email }} 
+				<a href="{% url 'user:changefriend' Op='remove' pk=friend.pk %}">
+				<button type="button" class="btn btn-default">delete</button>
+				</a>
+			</li>
+			<br>
+			{% endfor %}
+		</div>
+		<div class="col-md-4">
+			<h4>Other User</h4>
+			{% for other in others%}
+					<li> {{ other.email }}
+						{% if not other in friends %}
+						<a href="{% url 'user:changefriend' Op='add' pk=other.pk %}">
+						<button type="button" class="btn btn-success">Add</button>
+						</a>
+						{% endif %}
+					</li>
+			<br>
+			{% endfor %}
+		</div>
     </div>
 
 {% endblock %}

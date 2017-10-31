@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 
-from .admin import UserCreationForm
+from .admin import UserCreationForm, Friend
 from .forms import EditProfileForm
+from .models import MyUser
+
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 
@@ -24,9 +26,13 @@ def signup(request):
 
 
 def profile(request):
-	args = {'user': request.user}
-	return render(request, 'authentication/profile.html', args)
-
+    #user = request.user
+    others = MyUser.objects.exclude(id=request.user.id)
+    friend = Friend.objects.get(current_user=request.user)
+    friends = friend.users.all()
+    #print(friends_users)
+    args = {'user': request.user, 'friends': friends, 'others': others}
+    return render(request, 'authentication/profile.html', args)
 
 def edit(request):
     if request.method == 'POST':
@@ -56,3 +62,11 @@ def passwordchange(request):
          form =  PasswordChangeForm(user=request.user)
 
     return render(request, 'authentication/passwordchange.html', {'form': form})
+
+def changefriend(request, Op, pk):
+    friend=MyUser.objects.get(pk=pk)
+    if Op=='add':
+        Friend.Make_A_Friend(request.user,friend)
+    elif Op=='remove':
+        Friend.Lose_A_Friend(request.user,friend)
+    return redirect('user:profile')
