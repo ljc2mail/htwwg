@@ -26,10 +26,12 @@ def signup(request):
 
 
 def profile(request):
-    #user = request.user
     others = MyUser.objects.exclude(id=request.user.id)
-    friend = Friend.objects.get(current_user=request.user)
-    friends = friend.users.all()
+    try:
+        friend = Friend.objects.get(current_user=request.user)
+        friends = friend.users.all()
+    except Friend.DoesNotExist:
+        friends = None        
     #print(friends_users)
     args = {'user': request.user, 'friends': friends, 'others': others}
     return render(request, 'authentication/profile.html', args)
