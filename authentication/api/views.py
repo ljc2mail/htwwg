@@ -28,3 +28,12 @@ class User_CreateAPIView(CreateAPIView):
 
     #def perform_create(self, serializer):
     #	serializer.save(name=self.request.name)
+
+from rest_framework import viewsets
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing user instances.
+    """
+    serializer_class = UserCreateSerializer
+    queryset = User.objects.all()

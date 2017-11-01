@@ -12,7 +12,7 @@ User = get_user_model()
 
 class UserCreateSerializer(ModelSerializer):
 	email = EmailField(label="Email Address")
-	email2 = EmailField(label="Confirm Email Address")
+	#email2 = EmailField(label="Confirm Email Address")
 
 	class Meta:
 		model=User
@@ -22,7 +22,7 @@ class UserCreateSerializer(ModelSerializer):
 									{'write_only': True}
 		}
 
-
+	"""
 	def validate_email2(self, value):
 		data = self.get_initial()
 		email1 = data.get("email")
@@ -30,6 +30,7 @@ class UserCreateSerializer(ModelSerializer):
 		if email2 != email1 :
 			raise ValidationError ('Email must match')
 		return value
+	"""
 
 	"""
 		email_qs = User.objects.filter(email=email2)
