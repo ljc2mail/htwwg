@@ -11,7 +11,7 @@ olefile==0.44
 pandas==0.20.3
 pandas-datareader==0.5.0
 Pillow==4.3.0
-PyJWT==1.5.3
+PyJWT==2.4.0
 python-dateutil==2.6.1
 pytz==2017.2
 requests==2.18.4
